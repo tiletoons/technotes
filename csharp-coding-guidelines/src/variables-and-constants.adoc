@@ -1,0 +1,67 @@
+[[variables-and-constants]]
+== Variables and Constants
+
+Do not define all variables at the beginning of a block:
+
+```cs
+public static void Main()
+{
+    string command; // Avoid
+    bool exit = false; // Avoid
+    Thermometer thermometer = new Thermometer();
+
+    Console.WriteLine(MessageWelcome);
+
+    do {
+        ...
+        command = Console.ReadLine();
+        ...
+    } while (!exit);
+}
+```
+
+Instead, define each variable just before it is used for the first time:
+
+```cs
+public static void Main()
+{
+    Thermometer thermometer = new Thermometer();
+
+    Console.WriteLine(MessageWelcome);
+
+    string command; // OK
+    bool exit = false; // OK
+
+    do {
+        ...
+        command = Console.ReadLine();
+        ...
+    } while (!exit);
+}
+```
+
+Do not define two variables on the same line:
+
+```cs
+int celsius = 0, farenheit = 0; // Avoid
+```
+
+Define `const` fields as `private` or `protected` if no other class has an interest
+in them.
+
+Do not use _magic numbers_! A magic number is a numeric constant embedded in code,
+without a constant definition. Any number except `-1`, `0`, and `1` is considered
+magic:
+
+```cs
+temperature = random.Next(-273, 100); // Avoid
+```
+
+Use `const` fields instead:
+
+```cs
+private const int AbsoluteZero = -273;
+private const int MaxTemperature = 100;
+...
+temperature = random.Next(AbsoluteZero, MaxTemperature); // OK
+```

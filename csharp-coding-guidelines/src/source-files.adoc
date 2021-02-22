@@ -1,0 +1,30 @@
+[[source-files]]
+== Source Files
+
+Source files should be kept as short as possible. Put every class in a separate
+file, and name that file like the class followed by the `.cs` extension.
+
+For each assembly, create a new directory named like the assembly itself, and
+inside each assembly directory, map namespaces one-to-one to the directory layout
+For example, namespace `Thermota.Core.Properties` in assembly `Termota.Core`
+should be mapped to directory `Thermota.Core`.
+
+Organize the material in each source file as follows:
+
+1. file header
+2. `using` statements
+3. `namespace` statement, if appropriate
+4. A `class`, `struct`, or `enum`
+
+The file header should at least include the file name, begin date, author, and
+copyright notice:
+
+```cs
+//+ <source name="Thermometer.cs" language="C#" begin="17-_Feb-2021">
+//+ <author href="mailto:j3d@tiletoons.com">J3d</author>
+//+ <copyright year="2021">
+//+ <holder web="https://tiletoons.com">Tiletoons!</holder>
+//+ </copyright>
+//+ <legalnotice>All rights reserved.</legalnotice>
+//+ </source>
+```

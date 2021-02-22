@@ -1,0 +1,243 @@
+[[lexical-issues]]
+== Lexical Issues
+
+[naming-conventions]
+=== Naming Convention
+
+Before you go through the rules for naming program elements, you should be aware
+of the two most common ways of using character casing (UPPER and lower case) to
+distinguish between elements. They are:
+
+.Naming Convention
+[cols="h,1"]
+|===
+|Pascal Casing |The first character is upper case, and the first letter of each word is also upper case. All other characters are lower case; for example, `CurrentTemperature`.
+|Camel Casing |The first character is not upper case, but the first letter of each word is upper case. All other characters are lower case; for example, `currentTemperature`.
+|===
+
+The following rules specify how to define identifier names:
+
+* _Namespaces_ must be named using Pascal casing, and their names must be nouns
+  or noun phrases describing a logical group of classes (do not use any prefix);
+  for example, `Thermometer`.
+* _Classes_ and _structs_ must be named using Pascal casing, and their names must
+  be nouns or noun phrases describing behavior (do not use any prefix); for example,
+  `Thermometer`. _Exception classes_ must always have the `Exception` suffix; for
+  example, `OutOfRangeException`.
+* _Interfaces_ must be named using Pascal casing, and their names must be noun
+  or noun phrases prefixed with `I` describing behavior; for example, `IComponent`.
+* _Enumeration_ types and values must be named using Pascal casing, and their names
+  must be singular nouns or plural nouns for bit fields (do not use any prefix);
+  for example, `TemperatureScale.Celsius`.
+* _Read-only_ and _constant_ fields must be named using Pascal casing, and their
+  names must be nouns or abbreviations for nouns; for example, `AbsoluteZero`.
+* _Parameter_ and _non-constant_ fields must be named using Camel casing, and their
+  names should be nouns or noun phrases describing the meaning of the field; for
+  example, `newTemperature`.
+* _Variables_ must be named using Camel casing, and their names should describe the
+  meaning of the variable, unless they are used in trivial counting loops; for
+  example, `sumTemperature`.
+* _Methods_ must be named using Pascal casing, and their names must be verbs or
+  verb phrases; for example, `Detect()`.
+* _Properties_ must be named using Pascal casing, and their names must be nouns
+  or noun phrases describing the meaning of the property (consider naming properties
+  like the attributes they represent); for example, `AverageTemperature`.
+* _Events_ must be named using Pascal casing, and their name should be verbs or verb
+  phrases describing the event; for example, `DetectTemperature`.
+* _Event handlers_ must be named using Pascal casing, and their names should be the
+  same as the name of the events they handle with the `EventHandler` suffix. Event
+  handlers must always have two parameters named `sender` and `args`, respectively,
+  and event argument classes should always have the `EventArgs` suffix:
+
+```cs
+public delegate void DetectTemperatureEventHandler(Object sender,
+    DetectTemperatureEventArgs args);
+```
+
+.Summary
+[cols="<,^,^,<", options="header"]
+|===
+| |Pascal Casing |Camel Casing |Comments
+
+|Namespaces
+|X
+|
+|
+
+|Classes
+|X
+|
+|
+
+|Exception Classes
+|X
+|
+|End with `Exception`
+
+|Event Argument Classes
+|X
+|
+|End with `EventArgs`
+
+|Interfaces
+|X
+|
+|Start with `I`
+
+|Enumerations
+|X
+|
+|
+
+|Enumeration Values
+|X
+|
+|
+
+|Readonly/Const Fields
+|X
+|
+|
+
+|Public Fields
+|X
+|
+|
+
+|Protected Fields
+|
+|X
+|
+
+|Private Fields
+|
+|X
+|
+
+|Parameters
+|
+|X
+|
+
+|Methods
+|X
+|
+|
+
+|Properties
+|X
+|
+|
+
+|Events
+|X
+|
+|
+
+|Event Handlers
+|X
+|
+|End with `EventHandler`
+|===
+
+[indentation-and-white-spaces]
+=== Indentation and White Spaces
+
+Use tab stops every two columns and set them to be expanded to white spaces. That
+means you will need to change the tab stop setting in your editor!
+
+Use blank lines freely to separate parts of a method that are logically distinct.
+Use a white space around every binary operator:
+
+```cs
+averageTemperature=temperatureSum/temperatures.Count; // Avoid
+averageTemperature = temperatureSum / temperatures.Count; // OK
+```
+
+Leave a white space after (and not before) a comma, semicolon, and keyword, but
+not after a method name:
+
+```cs
+public void OnDetectTemperature(
+    Object sender, DetectTemperatureEventArgs args)
+{
+    ...
+    if (temperatures.Count == MaxCapacity) {
+        temperatures.RemoveAt(0);
+    }
+    ...
+}
+```
+
+Every line should fit on 80 columns. If you must break a statement, add an indentation
+level for the continuation:
+
+```cs
+probe.DetectTemperature +=
+    new Probe.DetectTemperatureEventHandler(OnDetectTemperature);
+```
+
+When breaking arithmetic expressions, start the indented line with an operator:
+
+```cs
+farenheit = (celsius * 1.8)
+          + 32;
+
+celsius = (farenheit - 32)
+        * (5 / 9);
+```
+
+[braces]
+=== Braces
+
+Opening curly braces should be placed on the same line as the keyword they are
+associated with &#x2014; preceded by a white space, unless you are declaring a
+_namespace_, _class_, _struct_, _interface_, or _method_. In these cases opening
+curly braces should begin on a new line. Keywords and closing curly braces must
+always line up vertically:
+
+```cs
+namespace Thermota.Core
+{
+    ...
+    public class Probe
+    {
+        ...
+        private void Detect()
+        {
+            ...
+            while (true) {
+                ...
+                if (DetectTemperature != null) {
+                    ...
+                    DetectTemperature(this, args);
+                }
+                ...
+            }
+        }
+    }
+}
+```
+
+[unstable-layout]
+=== Unstable Layout
+
+Some programmers take great pride in lining up certain columns in their code:
+
+```cs
+private const int AbsoluteZero   = -273;
+private const int MaxTemperature = 100;
+```
+
+This is undeniably neat, but the layout is not _stable_ under change. A new constant
+name that is longer than the preallotted number of columns requires that you move
+_all_ entries around:
+
+```cs
+private const int AbsoluteZero      = -273;
+private const int MaxTemperature    = 100;
+private const int DetectionInterval = 5000;
+```
+
+This is just the kind of trap that makes you decide to use a name like `DetectionInt`
+instead of `DetectionInterval`, which is less clear.

@@ -1,0 +1,43 @@
+[[classes-and-structs]]
+== Classes and Structs
+
+Each class and each struct should be preceded by a documentation comment explaining
+the purpose of the class or the purpose of the struct, respectively:
+
+```cs
+/// <summary>
+/// Models a thermometer.
+/// </summary>
+public class Thermometer
+{
+    ...
+}
+```
+
+Use the documentation feature supported by the C# compiler by including the reserved
+XML tags in special comment lines preceded by three slashes just before the code
+block they refer to.
+
+Define features in alphabetical order and group them as following:
+
+1. Nested classes
+2. `const` fields
+3. `readonly` fields
+4. `static` variables
+5. Instance (or class) variables
+6. Properties
+7. Operators
+8. Methods
+
+`public` features should precede `protected` and `private` features.
+
+Leave a blank line after each group of related fields or variables as well as after
+every property or method.
+
+All instance variables must be private. Use properties to provide access to them
+&#x2014; however, instance variables of a private inner class or struct may be public.
+Methods, properties, and `const` fields can be either `public`, `protected`, or
+`private`, as appropriate.
+
+All features must be tagged either `public`, `protected`, or `private`. Do not
+use the default visibility.

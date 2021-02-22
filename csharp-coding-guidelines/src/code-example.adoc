@@ -1,0 +1,33 @@
+[[code-example]]
+== Code Example
+
+This appendix provides the full source code from which the examples in this document
+have been extracted. The complete example project can be downloaded from
+https://github.com/tiletoons/technotes/tree/main/csharp-coding-guidelines/src/code/Thermota[GitHub].
+
+[source,cs]
+.ThermometerConsole.cs
+----
+include::./code/Thermota/Thermota/ThermometerConsole.cs[]
+----
+<<<
+
+[source,cs]
+.DetectTemperatureEventArgs.cs
+----
+include::./code/Thermota/Thermota.Core/DetectTemperatureEventArgs.cs[]
+----
+<<<
+
+[source,cs]
+.Probe.cs
+----
+include::./code/Thermota/Thermota.Core/Probe.cs[]
+----
+<<<
+
+[source,cs]
+.Thermometer.cs
+----
+include::./code/Thermota/Thermota.Core/Thermometer.cs[]
+----

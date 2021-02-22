@@ -1,0 +1,18 @@
+= C# Coding Guidelines
+J3d <j3d@tiletoons.com>
+v.1.0, 2021-02-18: Final
+:sectnums:
+:toc:
+:toclevels: 3
+:doctype: book
+:lang: en-US
+
+include::introduction.adoc[]
+include::source-files.adoc[]
+include::classes-and-structs.adoc[]
+include::methods.adoc[]
+include::properties.adoc[]
+include::variables-and-constants.adoc[]
+include::control-flow.adoc[]
+include::lexical-issues.adoc[]
+include::code-example.adoc[]

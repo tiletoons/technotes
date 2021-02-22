@@ -1,0 +1,158 @@
+[[control-flow]]
+== Control Flow
+
+[the-if-statement]
+=== The `if` Statement
+
+Use the `if` statement to select a statement for execution based on the value of
+a Boolean expression:
+
+```cs
+if (temperatureSum > 0) {
+    averageTemperature = temperatureSum / temperatures.Count;
+} else {
+    averageTemperature = this.Temperature;
+}
+```
+
+To keep you out of trouble, execution statements should always be enclosed within
+curly braces.
+
+[the-for-statement]
+=== The `for` Statement
+
+Use the `for` statement only when a variable runs from somewhere with some constant
+increment or decrement:
+
+```cs
+for (int i = 0; i < temperatures.Count; i++) {
+    temperatureSum += (int) temperatures[i];
+}
+```
+
+As for the `if` statement, execution statements should always be enclosed within
+curly braces.
+
+[the-foreach-statement]
+=== The `foreach` Statement
+
+Use the `foreach` statement to iterate through a collection that do not need to
+be changed:
+
+```cs
+foreach (int temperature in temperatures) {
+    temperatureSum += temperature;
+}
+```
+
+As for the `for` statement, execution statements should always be enclosed within
+curly braces.
+
+**Note.** Using the `foreach` statement to change a collection may cause unpredictable
+side effects.
+
+[the-whild-statement]
+=== The `while` Statement
+
+Use the `while` statement to execute a statement until a specified expression
+evaluates to `false`:
+
+```cs
+while (true) {
+    ...
+    if (DetectTemperature != null) {
+        ...
+        DetectTemperature(this, args);
+    }
+    ...
+}
+```
+
+As for the `foreach` statement, execution statements should always be enclosed
+within curly braces.
+
+**Note.** If the specified expression never evaluates to `true`, the statement
+will never be executed.
+
+[the-do-statement]
+=== The `do` Statement
+
+Use the `do` statement to execute a statement repeatedly until a specified
+expression evaluates to `false`, at least one time even if the expression never
+evaluates to `true`:
+
+```cs
+do {
+    ...
+    command = Console.ReadLine();
+
+    switch (command) {
+        ...
+        case CommandExit:
+            exit = true;
+            break;
+        ...
+    }
+} while (!exit);
+```
+
+As for the `while` statement, execution statements should always be enclosed within
+curly braces.
+
+[the-switch-statement]
+=== The `switch` Statement
+
+Use the `switch ` statement to handle multiple selections by passing control to
+one of the `case` statements within its body:
+
+```cs
+switch (command) {
+    case CommandAverage:
+        Console.WriteLine(thermometer.AverageTemperature);
+        break;
+    case CommandCurrent:
+        Console.WriteLine(thermometer.Temperature);
+        break;
+    case CommandExit:
+        exit = true;
+        break;
+    default:
+        Console.WriteLine(CommandAverage + "\t\t" + MessageAverage);
+        Console.WriteLine(CommandCurrent + "\t\t" + MessageCurrent);
+        Console.WriteLine(CommandExit + "\t\t" + MessageExit);
+        Console.WriteLine(CommandHelp + "\t\t" + MessageHelp);
+        break;
+}
+```
+
+The `case` statements must evaluate constant expressions, and the `switch` body
+should always end with a `default` statement handling unexpected options.
+
+[the-try-catch-statement]
+=== The `try`-`catch` Statement
+
+Use the `try`-`catch` statement to handle raised exceptions:
+
+```cs
+try {
+    temperature = random.Next(AbsoluteZero, MaxTemperature);
+} catch (ArgumentOutOfRangeException) {
+    temperature = MaxTemperature;
+}
+```
+
+If necessary, use `finally` to clean up any resource allocated in the `try`-`catch`
+block:
+
+```cs
+try {
+    temperatures.Add(temperature);
+} catch (ArgumentOutOfRangeException e) {
+    ...
+} finally {
+    probe.Stop();
+}
+```
+
+**Note.** Control is always passed to the `finally` block regardless of how the
+`try`-`catch` block exits.

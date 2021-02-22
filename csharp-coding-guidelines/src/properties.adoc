@@ -1,0 +1,19 @@
+[[properties]]
+== Properties
+
+Every property should be preceded by a documentation comment explaining the purpose
+of the property and describing the value it represents:
+
+```cs
+/// <summary>
+/// Gets the current temperature.
+/// </summary>
+/// <value>
+/// The current temperature in degrees Celsius.
+/// </value>
+public int Temperature
+{
+    get { return temperature; }
+    set { temperature = value; }
+}
+```

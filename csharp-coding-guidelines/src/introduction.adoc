@@ -1,0 +1,23 @@
+[[introduction]]
+== Introduction
+
+This document describes a set of coding style guides for developing programs in
+the C# language.
+
+A style guide is a set of mandatory requirements for layout and formatting.
+Uniform style makes it easier for other developers to grasp the essence of your
+programs quickly.
+
+A style guide makes you more productive because it _reduces gratuitous choice_.
+If you do not have to make choices about trivial matters, you can spend your
+energy on the solution of real problems.
+
+In these guidelines, several constructors are plainly outlawed. That does not
+mean that developers using them are evil or incompetent. It does mean that the
+constructs are not essential and can be expressed just as well or even better
+with other language constructors.
+
+If you already have programming experience, you may be initially uncomfortable
+at giving up some fond habits. However, it is a sign of professionalism to set
+aside personal preferences in minor matters and to compromise for the benefit of
+the group.
